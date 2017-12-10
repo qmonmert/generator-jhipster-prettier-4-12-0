@@ -2386,4 +2386,27 @@ module.exports = class extends PrivateBase {
         dest.fieldNameChoices = [];
         dest.relNameChoices = [];
     }
+
+    // TODO: comments
+    prettierTs(source, dest, generator, opt, template) {
+        const _this = generator || this;
+        let regex;
+        regex = new RegExp([
+            /(,[\s]*(resolve):[\s]*[{][\s]*(translatePartialLoader)['a-zA-Z0-9$,(){.<%=\->;\s:[\]]*(;[\s]*\}\][\s]*\}))/, // ng1 resolve block
+            /([\s]import\s\{\s?JhiLanguageService\s?\}\sfrom\s["|']ng-jhipster["|'];)/, // ng2 import jhiLanguageService
+            /(,?\s?JhiLanguageService,?\s?)/, // ng2 import jhiLanguageService
+            /(private\s[a-zA-Z0-9]*(L|l)anguageService\s?:\s?JhiLanguageService\s?,*[\s]*)/, // ng2 jhiLanguageService constructor argument
+            /(this\.[a-zA-Z0-9]*(L|l)anguageService\.setLocations\(\[['"a-zA-Z0-9\-_,\s]+\]\);[\s]*)/, // jhiLanguageService invocations
+        ].map(r => r.source).join('|'), 'g');
+
+        jhipsterUtils.copyWebResource(source, dest, regex, 'js', _this, opt, template);
+        
+        console.log('  => Prettier 3 ...');
+        console.log('  => Source : ' + source);
+        console.log('  => Dest : ' + dest);
+        shelljs.exec(`./node_modules/.bin/prettier-tslint fix ` + dest);
+        shelljs.exec(`cat ` + dest);
+        generator.fs.write(dest, shelljs.exec(`cat ` + dest) + '');
+    }
+
 };

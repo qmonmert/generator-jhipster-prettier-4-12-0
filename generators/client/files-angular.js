@@ -38,6 +38,7 @@ const files = {
                 '_tsconfig-aot.json',
                 '_tslint.json',
                 '_.angular-cli.json',
+                '_.prettierrc',
                 'webpack/_utils.js',
                 'webpack/_webpack.common.js',
                 'webpack/_webpack.dev.js',
@@ -527,6 +528,14 @@ const files = {
                 'e2e/admin/_administration.spec.ts',
                 'e2e/page-objects/_jhi-page-objects.ts',
                 '_protractor.conf.js'
+            ]
+        }
+    ],
+    prettier: [
+        {
+            path: ANGULAR_DIR,
+            templates: [
+                { file: '_app.module.ts', method: 'prettierTs' }
             ]
         }
     ]

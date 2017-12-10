@@ -22,6 +22,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { Ng2Webstorage } from 'ngx-webstorage';
 
+import { Route } from '@angular/router';
+
 import { <%=angularXAppName%>SharedModule, UserRouteAccessService } from './shared';
 import { <%=angularXAppName%>AppRoutingModule} from './app-routing.module';
 import { <%=angularXAppName%>HomeModule } from './home/home.module';

@@ -168,6 +168,8 @@ module.exports = class extends BaseGenerator {
         jhipsterFunc.buildApplication = this.buildApplication;
         jhipsterFunc.writeFilesToDisk = this.writeFilesToDisk;
         jhipsterFunc.getEntityJson = this.getEntityJson;
+        jhipsterFunc.prettierTs = this.prettierTs;
+        
     }
 
     initializing() {
